@@ -1,9 +1,10 @@
 import urllib.parse
+import sys
 
+compromised_file = sys.argv[1]
+lastpass_file = sys.argv[2]
 
-compromised_file = "PATH_TO/sorted_unique_cf.txt"
-lastpass_file = "PATH_TO/lastpass.csv"
-
+#import file data
 list_of_sites = open(compromised_file).readlines()
 list_of_passwords = open(lastpass_file).readlines()
 
@@ -17,5 +18,7 @@ for i in range(len(list_of_passwords)):
     list_of_passwords[i] = simplified
 
 for password in list_of_passwords:
+    if password == "":
+        continue
     if password in list_of_sites:
         print("Site",password,"is affected")
